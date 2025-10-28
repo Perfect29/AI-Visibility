@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Visibility Tool - MVP</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🔍 AI Visibility Tool</h1>
+            <p>Track your brand's visibility across AI platforms</p>
+        </header>
+
+        <!-- Main Form -->
+        <div class="card">
+            <div class="form-section">
+                <h2>1. Enter Your Brand Information</h2>
+                <div class="input-group">
+                    <label for="brandName">Brand Name</label>
+                    <input type="text" id="brandName" placeholder="e.g., Stripe" required>
+                </div>
+                <div class="input-group">
+                    <label for="brandDomain">Website</label>
+                    <input type="url" id="brandDomain" placeholder="https://example.com" required>
+                </div>
+                <button id="extractKeywordsBtn" class="btn-secondary" onclick="extractKeywords()">
+                    <span id="keywordsBtnText">Extract Keywords</span>
+                    <span id="keywordsBtnLoader" class="loader" style="display:none"></span>
+                </button>
+            </div>
+
+            <div class="form-section" id="keywordsSection" style="display:none">
+                <h2>2. Review & Edit Keywords</h2>
+                <div class="keywords-container" id="keywordsContainer"></div>
+                <button id="generatePromptsBtn" class="btn-secondary" onclick="generatePrompts()">
+                    <span id="promptsBtnText">Generate Prompts</span>
+                    <span id="promptsBtnLoader" class="loader" style="display:none"></span>
+                </button>
+            </div>
+
+            <div class="form-section" id="promptsSection" style="display:none">
+                <h2>3. Review & Edit Prompts</h2>
+                <div class="prompts-container" id="promptsContainer"></div>
+                <button id="analyzeBtn" class="btn-primary" onclick="runAnalysis()">
+                    <span id="btnText">Analyze Visibility</span>
+                    <span id="btnLoader" class="loader" style="display:none"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="results-section" style="display:none">
+            <div class="card">
+                <h2>📊 Visibility Results</h2>
+                
+                <!-- Metrics Grid -->
+                <div class="metrics-grid" id="metricsGrid"></div>
+
+                <!-- Enhanced Metrics -->
+                <div class="enhanced-metrics" id="enhancedMetrics"></div>
+
+                <!-- Platform Breakdown -->
+                <div class="platform-section" id="platformSection"></div>
+
+                <!-- Position Analysis -->
+                <div class="position-section" id="positionSection"></div>
+
+                <!-- Recommendations -->
+                <div class="recommendations" id="recommendations"></div>
+
+                <!-- Blurred Detailed Analysis Section -->
+                <div class="detailed-analysis-blurred">
+                    <div class="blurred-content">
+                        <h3>📈 Detailed Analysis</h3>
+                        <div class="blurred-metrics">
+                            <div class="blurred-metric">
+                                <div class="blurred-value">85%</div>
+                                <div class="blurred-label">Sentiment Score</div>
+                            </div>
+                            <div class="blurred-metric">
+                                <div class="blurred-value">12</div>
+                                <div class="blurred-label">Total Citations</div>
+                            </div>
+                            <div class="blurred-metric">
+                                <div class="blurred-value">Top 3</div>
+                                <div class="blurred-label">Position Trend</div>
+                            </div>
+                        </div>
+                        <div class="blurred-text">
+                            <p>🔍 Competitor analysis shows Stripe ranks #3 in payment processing queries</p>
+                            <p>📊 Detailed sentiment breakdown across 15+ platforms</p>
+                            <p>🎯 Position optimization recommendations for each keyword</p>
+                            <p>📈 Historical visibility trends and growth patterns</p>
+                            <p>🏆 Competitive benchmarking against top 10 rivals</p>
+                        </div>
+                        <div class="blurred-overlay">
+                            <div class="premium-badge">✨ Premium Feature</div>
+                            <button class="unlock-btn" onclick="showPremiumModal()">
+                                🔓 Unlock Detailed Analysis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simple Premium Modal -->
+        <div id="premiumModal" class="simple-modal">
+            <div class="simple-modal-content">
+                <button class="close-btn" onclick="hidePremiumModal()">×</button>
+                <div class="simple-header">
+                    <div class="simple-icon">✨</div>
+                    <h2>Want to see more?</h2>
+                    <p>Get detailed competitor analysis and AI optimization strategies</p>
+                </div>
+                
+                <form class="simple-form" onsubmit="event.preventDefault(); submitSimpleContact();">
+                    <div class="simple-input-group">
+                        <input type="text" id="simpleName" placeholder="Your name" required>
+                        <input type="email" id="simpleEmail" placeholder="your@email.com" required>
+                    </div>
+                    
+                    <button type="submit" id="simpleSubmitBtn" class="simple-submit-btn">
+                        Get Early Access
+                    </button>
+                </form>
+                
+                <div class="simple-footer">
+                    <p>🔒 Secure & private</p>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    <!-- JavaScript -->
+    <script src="/static/js/app.js"></script>
+</html>

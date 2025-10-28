@@ -1,0 +1,36 @@
+services:
+  ai-visibility-app:
+    build: 
+      context: .
+      dockerfile: ./backend/Dockerfile
+      target: production
+    container_name: ai-visibility-app-prod
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - HOST=0.0.0.0
+      - PORT=8000
+      - DEBUG=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    # Production optimizations
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '0.5'
+        reservations:
+          memory: 256M
+          cpus: '0.25'
+    # Security
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:noexec,nosuid,size=100m
