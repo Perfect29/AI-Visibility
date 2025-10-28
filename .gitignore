@@ -11,32 +11,29 @@ ENV/
 dist/
 build/
 
+# Extra directories
+backend/frontend/
+
 # Environment
 .env
 .env.local
-*.log
+*.env
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-
-# OS
 .DS_Store
-Thumbs.db
+
+# Frontend
+node_modules/
+.vercel
+
+# Logs
+*.log
 
 # Testing
 .pytest_cache/
 .coverage
 htmlcov/
-
-# Documentation (generated)
-*.md.backup
-
-# Temporary files
-tmp/
-temp/
-*.tmp
-

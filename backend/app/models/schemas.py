@@ -1,66 +1,28 @@
-"""Pydantic models for request/response validation"""
-from pydantic import BaseModel, HttpUrl
-from typing import List, Dict, Optional, Any
+"""Data models"""
+from pydantic import BaseModel, Field
+from typing import List, Optional
 
 
-# Request Models
-class BrandInput(BaseModel):
-    """Brand information input"""
-    brand_name: str
-    domain: HttpUrl
-
-
-class CustomPromptsRequest(BaseModel):
-    """Request with custom user prompts"""
-    brand_name: str
-    custom_prompts: List[str]
-
-
-class SimulationRequest(BaseModel):
-    """Simulation request"""
-    brand_name: str
-    prompts: List[str]
-    platforms: List[str] = ["chatgpt", "perplexity"]
-
-
-# Response Models
 class KeywordResponse(BaseModel):
-    """Keywords extracted from domain"""
-    brand_name: str
-    domain: str
-    keywords: List[str]
+    keywords: List[str] = Field(..., description="Extracted keywords")
 
 
-class PromptItem(BaseModel):
-    """Individual prompt with metadata"""
-    keyword: str
+class PromptResponse(BaseModel):
+    prompts: List[str] = Field(..., description="Generated prompts")
+
+
+class VisibilityResult(BaseModel):
     prompt: str
-    intent_type: str
+    relevance: int = Field(..., ge=0, le=100)
+    competition: int = Field(..., ge=0, le=100)
+    brand_strength: int = Field(..., ge=0, le=100)
+    overall_score: float = Field(..., ge=0, le=100)
+    explanation: str
 
 
-class PromptsResponse(BaseModel):
-    """Generated prompts response"""
+class SimulationResponse(BaseModel):
     brand_name: str
-    prompts: List[PromptItem]
+    overall_score: float = Field(..., ge=0, le=100)
     total_prompts: int
-
-
-class PlatformStats(BaseModel):
-    """Statistics for a single platform"""
-    total_queries: int
-    mentions: int
-    visibility_rate: float
-    mention_count: int
-    citation_count: int
-    avg_position: Optional[float]
-
-
-class VisibilityMetrics(BaseModel):
-    """Simplified visibility analysis for user display"""
-    brand_name: str
-    visibility_percentage: float
-    total_prompts: int
-    mentions: int
-    average_position: Optional[float]
+    results: List[VisibilityResult]
     recommendations: List[str]
-
