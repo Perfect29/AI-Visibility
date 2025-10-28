@@ -13,10 +13,57 @@ A comprehensive tool to analyze your brand's visibility across AI platforms like
 
 ## 🚀 Quick Start
 
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Perfect29/AI-Visibility.git
+   cd AI-Visibility
+   ```
+
+2. **Start the application**
+   ```bash
+   ./start.sh
+   ```
+
+3. **Open your browser**
+   - Frontend: http://localhost:8000
+   - API: http://localhost:8000/api
+
 ### Prerequisites
 
 - Docker Desktop installed and running
 - OpenAI API key
+
+## 🌐 Deployment Options
+
+### Option 1: Vercel (Recommended)
+1. Fork this repository
+2. Connect your GitHub account to [Vercel](https://vercel.com)
+3. Import the repository
+4. Add environment variable: `OPENAI_API_KEY`
+5. Deploy automatically
+
+### Option 2: Railway
+1. Connect your GitHub account to [Railway](https://railway.app)
+2. Create new project from GitHub
+3. Select this repository
+4. Add environment variable: `OPENAI_API_KEY`
+5. Deploy automatically
+
+### Option 3: Render
+1. Connect your GitHub account to [Render](https://render.com)
+2. Create new Web Service
+3. Connect this repository
+4. Add environment variable: `OPENAI_API_KEY`
+5. Deploy automatically
+
+### Option 4: Heroku
+1. Install [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+2. Login to Heroku: `heroku login`
+3. Create app: `heroku create your-app-name`
+4. Add environment variable: `heroku config:set OPENAI_API_KEY=your_key`
+5. Deploy: `git push heroku main`
 
 ### 1. Clone and Setup
 
